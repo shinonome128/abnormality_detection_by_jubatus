@@ -93,4 +93,94 @@ apt-get install -y jubatus
 cicd-demo の terraform の仕組みを流用  
 GCP 上にインストする  
   
+## 環境準備  
+  
+cicddemo のテンプレートをそのまま使う  
+  
+.gitignore の追記  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+echo *.swp>.gitignore  
+echo *.swo>.gitignore  
+echo *.json>.gitignore  
+echo .terraform/>.gitignore  
+echo *.tfstate>.gitignore  
+echo *.tfstate.backup>.gitignore  
+echo identity>.gitignore  
+echo identity.pub>.gitignore  
+git add .gitignore  
+git commit -m "Add files"  
+git push  
+```  
+  
+SSH キーをコピー  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+C:/Users/shino/doc/cicddemo/identity  
+C:/Users/shino/doc/cicddemo/identity.pub  
+```  
+  
+Terraform 設定ファイルをコピー  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+mkdir terraform  
+cd terraform  
+C:/Users/shino/doc/cicddemo/terraform/gcp_firewall.tf  
+C:/Users/shino/doc/cicddemo/terraform/gcp_instances.tf  
+C:/Users/shino/doc/cicddemo/terraform/gcp_network.tf  
+C:/Users/shino/doc/cicddemo/terraform/gcp_provider.tf  
+git add *tf  
+git commit -m "Add first commit"  
+git push  
+```  
+  
+GCP クレデンシャルファイルの作成  
+全部、GUIから作成  
+GCP コンソール上からプロジェクト選択  
+APIとサービス 選択  
+認証情報を選択  
+認証情報を作成 クリック  
+サービスアカントキー クリック  
+Compute Engine default service account を選択  
+JSON をチェック  
+作成をクリック  
+クレデンシャルファイルがブラウザ経由でダウンロードされる  
+  
+gcp_provider.tf 修正  
+  
+gcp_network.tf 修正  
+  
+gcp_firewall.tf 修正  
+  
+gcp_instances.tf 修正  
+  
+初期セットアップコマンドを実行  
+.terraform ディレクトリが作成されここにプラグインが管理される  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+terraform init terraform  
+```  
+  
+プラン  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+terraform plan terraform  
+```  
+  
+ディプロイ  
+```  
+cd C:\Users\shino\doc\cicddemo  
+terraform apply terraform  
+```  
+  
+デストロイ  
+```  
+cd C:\Users\shino\doc\cicddemo  
+terraform plan -destroy terraform  
+terraform destroy terraform  
+```  
+  
+ここから再開  
+コマンドを流す部分から再開  
+  
 以上  
