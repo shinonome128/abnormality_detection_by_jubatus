@@ -100,14 +100,14 @@ cicddemo のテンプレートをそのまま使う
 .gitignore の追記  
 ```  
 cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
-echo *.swp>.gitignore  
-echo *.swo>.gitignore  
-echo *.json>.gitignore  
-echo .terraform/>.gitignore  
-echo *.tfstate>.gitignore  
-echo *.tfstate.backup>.gitignore  
-echo identity>.gitignore  
-echo identity.pub>.gitignore  
+echo *.swp>>.gitignore  
+echo *.swo>>.gitignore  
+echo *.json>>.gitignore  
+echo .terraform/>>.gitignore  
+echo *.tfstate>>.gitignore  
+echo *.tfstate.backup>>.gitignore  
+echo identity>>.gitignore  
+echo identity.pub>>.gitignore  
 git add .gitignore  
 git commit -m "Add files"  
 git push  
@@ -116,8 +116,8 @@ git push
 SSH キーをコピー  
 ```  
 cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
-C:/Users/shino/doc/cicddemo/identity  
-C:/Users/shino/doc/cicddemo/identity.pub  
+copy C:\Users\shino\doc\cicddemo\identity .  
+copy C:\Users\shino\doc\cicddemo\identity.pub .  
 ```  
   
 Terraform 設定ファイルをコピー  
@@ -125,14 +125,21 @@ Terraform 設定ファイルをコピー
 cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
 mkdir terraform  
 cd terraform  
-C:/Users/shino/doc/cicddemo/terraform/gcp_firewall.tf  
-C:/Users/shino/doc/cicddemo/terraform/gcp_instances.tf  
-C:/Users/shino/doc/cicddemo/terraform/gcp_network.tf  
-C:/Users/shino/doc/cicddemo/terraform/gcp_provider.tf  
+copy C:\Users\shino\doc\cicddemo\terraform\gcp_firewall.tf  .  
+copy C:\Users\shino\doc\cicddemo\terraform\gcp_instances.tf  .  
+copy C:\Users\shino\doc\cicddemo\terraform\gcp_network.tf  .  
+copy C:\Users\shino\doc\cicddemo\terraform\gcp_provider.tf  .  
 git add *tf  
 git commit -m "Add first commit"  
 git push  
 ```  
+  
+GCP プロジェクト作成  
+```  
+jubatus  
+```  
+  
+Compute Engine API の有効化  
   
 GCP クレデンシャルファイルの作成  
 全部、GUIから作成  
@@ -144,7 +151,13 @@ APIとサービス 選択
 Compute Engine default service account を選択  
 JSON をチェック  
 作成をクリック  
-クレデンシャルファイルがブラウザ経由でダウンロードされる  
+クレデンシャルファイルがブラウザ経由でダウンロードされるので移動  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+move "C:\Users\shino\Downloads\jubatus  -d418843cdf68.json" .  
+```  
+  
+ここから再開  
   
 gcp_provider.tf 修正  
   
@@ -180,7 +193,4 @@ terraform plan -destroy terraform
 terraform destroy terraform  
 ```  
   
-ここから再開  
-コマンドを流す部分から再開  
-  
-以上  
+EOF  
