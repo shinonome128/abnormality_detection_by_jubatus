@@ -1,2 +1,10 @@
 # .gitignore  
 *.swp  
+*.swp  
+*.swo  
+*.json  
+.terraform/  
+*.tfstate  
+*.tfstate.backup  
+identity  
+identity.pub  
