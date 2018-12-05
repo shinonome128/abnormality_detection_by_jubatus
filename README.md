@@ -182,15 +182,22 @@ terraform plan terraform
   
 ディプロイ  
 ```  
-cd C:\Users\shino\doc\cicddemo  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
 terraform apply terraform  
 ```  
   
+GCP コンソール経由でのアクセステスト  
+  
+SSH 経由でのアクセステスト  
+  
 デストロイ  
 ```  
-cd C:\Users\shino\doc\cicddemo  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
 terraform plan -destroy terraform  
 terraform destroy terraform  
 ```  
+  
+ここから再開  
+jubatus の apt-get のインストールをイニシャルコマンドに追加  
   
 EOF  
