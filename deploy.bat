@@ -1,0 +1,10 @@
+@ECHO ON
+
+REM ///////////////////////////////////////////////////
+REM deploy.bat
+REM ///////////////////////////////////////////////////
+
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+terraform apply terraform  
+
+Pause
