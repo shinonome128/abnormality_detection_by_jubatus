@@ -12,6 +12,12 @@ https://github.com/shinonome128/abnormality_detection_by_jubatus
 データサイエンティスト養成読本  
 オンライン機械学習入門、第2部、特集5  
   
+Jubatus 本家、　インストールガイド  
+http://jubat.us/ja/quickstart.html  
+  
+Jubatus インストール方法、　tee で分岐して sudo でリダイレクションする方法  
+https://qiita.com/kmaehashi/items/6e953e42ae7c09d5ba51  
+  
 ## オンライン機械学習とは  
   
 オンライン機械学習では学習対象の学習対象となるデータの全貌は見えず徐々に追加されてゆくとういう前提で設計  
@@ -197,7 +203,47 @@ terraform plan -destroy terraform
 terraform destroy terraform  
 ```  
   
+## jubatus の apt-get のインストールをイニシャルコマンドに追加  
+  
+ディプロイ、デストロイシェルの作成  
+WoX 起動シェルと gcloud ツールを参考に作成  
+```  
+cd C:\Users\shino\doc\abnormality_detection_by_jubatus  
+copy C:\Users\shino\doc\own_dashboard\deploy.bat .  
+copy C:\Users\shino\doc\own_dashboard\destroy.bat .  
+```  
+  
+ディプロイバッチの編集  
+  
+デストロイバッチの編集  
+  
+インスタンスのディスクリプションを修正  
+  
+ディプロイ  
+Ubuntu に OS 変更する  
+  
+  
+コマンド流し込みでうまくゆくかテスト  
+```  
+sudo chmod o+w /etc/apt/sources.list  
+  
 ここから再開  
-jubatus の apt-get のインストールをイニシャルコマンドに追加  
+chwon やめて tee 分岐方法で記載する  
+  
+  
+  
+sudo apt-get update  
+sudo apt-get install -y --allow-unauthenticated jubatus  
+export PATH=/opt/jubatus/bin:${PATH}  
+```  
+  
+デストロイ  
+  
+インスタンスのイニシャルコマンドに追加  
+  
+ディプロイ  
+正常にインストできたか確認  
+  
+デストロイ  
   
 EOF  
