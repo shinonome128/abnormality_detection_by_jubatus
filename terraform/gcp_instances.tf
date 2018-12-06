@@ -4,7 +4,7 @@ resource "google_compute_instance" "development" {
   name         = "development"
   machine_type = "n1-standard-1"
   zone         = "asia-northeast1-b"
-  description  = "cicddemo"
+  description  = "jubatus"
   tags         = ["development", "mass"]
 
 
