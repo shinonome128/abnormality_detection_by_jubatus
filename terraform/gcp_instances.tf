@@ -10,7 +10,7 @@ resource "google_compute_instance" "development" {
 
   boot_disk {
     initialize_params {
-      image = "projects/debian-cloud/global/images/debian-9-stretch-v20180911"
+      image = "projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20181203a"
     }
   }
 
