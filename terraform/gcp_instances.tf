@@ -21,9 +21,9 @@ resource "google_compute_instance" "development" {
   metadata_startup_script = <<EOT
 #!/bin/sh 
 echo 'deb [trusted=yes] http://download.jubat.us/apt/ubuntu/bionic/binary /' | tee /etc/apt/sources.list.d/jubatus.list
-apt-get update  
-apt-get install -y --allow-unauthenticated jubatus  
-export PATH=/opt/jubatus/bin:${PATH}  
+apt-get update
+apt-get install -y --allow-unauthenticated jubatus
+export PATH=/opt/jubatus/bin:$${PATH}
 EOT
 
   // ssh-key
