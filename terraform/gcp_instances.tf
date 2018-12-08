@@ -20,10 +20,10 @@ resource "google_compute_instance" "development" {
   // app install
   metadata_startup_script = <<EOT
 #!/bin/sh 
+echo 'export PATH=/opt/jubatus/bin:$${PATH}' >> /home/shinonome128/.profile
 echo 'deb [trusted=yes] http://download.jubat.us/apt/ubuntu/bionic/binary /' | tee /etc/apt/sources.list.d/jubatus.list
 apt-get update
 apt-get install -y --allow-unauthenticated jubatus
-echo 'export PATH=/opt/jubatus/bin:$${PATH}' >> /home/shinonome128/.profile
 EOT
 
   // ssh-key
