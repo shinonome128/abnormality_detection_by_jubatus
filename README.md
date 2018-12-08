@@ -220,18 +220,17 @@ copy C:\Users\shino\doc\own_dashboard\destroy.bat .
 インスタンスのディスクリプションを修正  
   
 ディプロイ  
-Ubuntu に OS 変更する  
-  
+Ubuntu に OS 変更、とりあえず、本家に従って、18.04  
+```  
+// Ubuntu 12.04 (Precise) の場合 - サポート対象外  
+// Ubuntu 14.04 (Trusty) の場合  
+// Ubuntu 16.04 (Xenial) の場合  
+// Ubuntu 18.04 (Bionic) の場合  
+```  
   
 コマンド流し込みでうまくゆくかテスト  
 ```  
-sudo chmod o+w /etc/apt/sources.list  
-  
-ここから再開  
-chwon やめて tee 分岐方法で記載する  
-  
-  
-  
+echo 'deb [trusted=yes] http://download.jubat.us/apt/ubuntu/bionic/binary /' | sudo tee /etc/apt/sources.list.d/jubatus.list  
 sudo apt-get update  
 sudo apt-get install -y --allow-unauthenticated jubatus  
 export PATH=/opt/jubatus/bin:${PATH}  
@@ -243,6 +242,33 @@ export PATH=/opt/jubatus/bin:${PATH}
   
 ディプロイ  
 正常にインストできたか確認  
+cli_ts コマンドで確認  
+```  
+* google_compute_instance.development: invalid variable syntax: "PATH". Did you mean 'var.PATH'? If this is part of inline `template` parameter  
+then you must escape the interpolation with two dollar signs. For  
+example: ${a} becomes $${a}.  
+```  
+アプライチェックで失敗、 Terraform で $ 使う場合は2回必要  
+  
+export コマンドが通ってない、 root で実行しているから  
+su でユーザ変更してから実行するようにしてみる  
+だめだね、  
+  
+shinonome128 の bash設定で定義する  
+```  
+echo 'export PATH=/opt/jubatus/bin:${PATH}' | tee /home/shinonome128/.bash_profile  
+```  
+だめ、色がおかしくなる、追加する場所が違う  
+```  
+# ~/.profile: executed by the command interpreter for login shells.  
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login  
+# exists.  
+```  
+  
+多分、.profile に追記するのが正解  
+```  
+echo 'export PATH=/opt/jubatus/bin:${PATH}' >> /home/shinonome128/.profile  
+```  
   
 デストロイ  
   
